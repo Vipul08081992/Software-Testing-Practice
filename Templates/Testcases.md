@@ -3,12 +3,30 @@ Test cases are detailed instructions or scenarios that define the conditions and
 
 # Template:
 
-| Test Case ID | Description   | Test Priority   | Preconditions | Test Steps | Expected Result    | Actual Result | Status    |
-|--------------|---------------|-----------------|---------------|------------|--------------------|---------------|-----------|
-| TC-001       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail |
-| TC-002       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail |
-| TC-003       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail |
-| ...          | ...           | ...             | ...           | ...        | ...                | ...           | ...       |
+**Test Case Title:**
+* A descriptive title that summarizes the objective of the test case.
+
+**Test Objective:**
+* Clearly state the purpose or goal of the test case.
+
+**Creater:**
+* Name of the person responsible to create the test case.
+
+**Reviewer:**
+* Name of the person responsible for reviewing the test case.
+
+**Date Created:**
+* The date when the test case was initially created.
+
+**Date Modified:**
+* The date of the last modification to the test case.
+
+| Test Case ID | Description   | Test Priority   | Preconditions | Test Steps | Expected Result    | Actual Result | Status    | Notes/<br/>Comments: |
+|--------------|---------------|-----------------|---------------|------------|--------------------|---------------|-----------|----------------------|
+| TC-001       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail | [Notes]              |
+| TC-002       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail | [Notes]              |
+| TC-003       | [Description] | High/Medium/Low | [Conditions]  | [Steps]    | [Expected Outcome] | [Outcome]     | Pass/Fail | [Notes]              |
+| ...          | ...           | ...             | ...           | ...        | ...                | ...           | ...       | ...                  |
 
 #### **Legend:**
 * **Test Case ID:** Unique identifier for each test case.
@@ -19,3 +37,4 @@ Test cases are detailed instructions or scenarios that define the conditions and
 * **Expected Result:** The expected outcome or behavior after executing the test steps.
 * **Actual Result:** The actual outcome observed during testing.
 * **Status:** Indication of whether the test case passed or failed.
+* **Notes/Comments:** Include any additional information, notes, or comments relevant to the test case.
