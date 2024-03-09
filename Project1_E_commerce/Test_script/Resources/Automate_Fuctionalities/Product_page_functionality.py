@@ -1,18 +1,20 @@
 from selenium.webdriver.common.by import By
-
-from tests.resourses.Element_Location.Product_Detail_page import item_name_xpath, back_to_product_button_name
-from tests.resourses.Element_Location.Product_List_page import Product_Page
-from tests.Helper.Automate_Fuctionalities.Login_functionality import login_button_click
-from selenium.webdriver.support.ui import Select
-from tests.Helper.Generic_functions.Read_Data import read_data_of_cell
-from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from tests.Helper.Generic_functions.format_the_string import format_string_low_replace
+from Project1_E_commerce.Test_script.Resources.Element_Location.Product_Detail_page import item_name_xpath, \
+    back_to_product_button_name
+from selenium.webdriver.support.ui import Select
+from Project1_E_commerce.Test_script.Resources.Element_Location.Product_List_page import Product_Page,Side_menu
+from Project1_E_commerce.Test_script.Tests.Valid_functionality import login
+from Uitils.format_the_string import format_string_low_replace
+
 #Open Menu:
 def open_menu(driver):
     driver.find_element(By.ID,Product_Page.menu_button_id()).click()
-    return driver
+    WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.ID,Side_menu.all_item_id())))
+    Text=driver.find_element(By.ID,Side_menu.all_item_id()).text
+    return driver,Text
 
 #Heading of Product page:
 def heading_product_page(driver):
@@ -21,14 +23,18 @@ def heading_product_page(driver):
 
 # List of Products name:
 def product_name_list(driver):
-    list_products_name=driver.find_elements(By.XPATH,Product_Page.list_item_xpath()).text()
-    return list_products_name
+    product_names=[]
+    list_products_ele=driver.find_elements(By.XPATH,Product_Page.list_item_xpath())
+    for i in list_products_ele:
+        product_names.append(i.text)
+    return product_names,driver
 
 #List of Product price:
 def product_price_list(driver):
     list_product_price=[]
-    list_product_value=driver.find_elements(By.XPATH,Product_Page.item_price_xpath()).text()
-    for price in list_product_value:
+    list_product_value=driver.find_elements(By.XPATH,Product_Page.item_price_xpath())
+    for p in list_product_value:
+        price=p.text
         list_product_price.append(float(price[1:]))
     return list_product_price
 
@@ -52,7 +58,7 @@ def sort_product_list(driver,value):
 
 #Get Name of First Item:
 def first_item_name(driver):
-    item_name=driver.find_element(By.XPATH,Product_Page.first_item_xpath()).text()
+    item_name=driver.find_element(By.XPATH,Product_Page.first_item_xpath()).text
     return item_name
 
 #Add items to cart:
@@ -60,22 +66,22 @@ def first_item_name(driver):
 def xpath_of_cart_button(item):
     item_change=format_string_low_replace(item)
     item_cart= "add-to-cart-" + item_change
-    item_list_xpath=f"//button[@id='add-to-{item_cart}']"
+    item_list_xpath=f"//button[@id='{item_cart}']"
     return item_list_xpath
 ## Add item to cart
-def add_to_cart_item(item_xpath,driver):
-    driver.find_elements(By.XPATH,xpath_of_cart_button(item_xpath)).click()
+def add_to_cart_item(item_name,driver):
+    item_xpath= xpath_of_cart_button(item_name)
+    driver.find_element(By.XPATH,item_xpath).click()
     return driver
 
 # Remove item from cart:
 ##Make xpath of the remove item
 def xpath_of_remove_button(item):
     item_change=format_string_low_replace(item)
-    item_cart= "add-to-cart-" + item_change
-    item_list_xpath=f"//button[@id='remove-{item_cart}']"
+    item_list_xpath=f"//button[@id='remove-{item_change}']"
     return item_list_xpath
 ##Remove item from cart
-def remove_item(driver):
+def remove_item(driver,item):
     driver.find_element(By.XPATH,xpath_of_remove_button(item)).click()
     return driver
 
